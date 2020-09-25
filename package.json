@@ -1,0 +1,19 @@
+{
+  "name": "my-team-generator",
+  "version": "1.0.0",
+  "description": "[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/portercol/My-Team-Generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/portercol/My-Team-Generator/issues"
+  },
+  "homepage": "https://github.com/portercol/My-Team-Generator#readme"
+}
