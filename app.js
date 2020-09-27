@@ -31,12 +31,19 @@ inquirer.prompt([
         message: "What is your email?"
     },
     {
-        type: "input",
+        type: "list",
         name: "role",
-        message: "What is your role?"
+        message: "What is your role?",
+        choices: 
+        [
+            "Manager",
+            "Engineer",
+            "Intern"
+        ]
     }
 ])
 .then (function(response){
+    // var userData = render(response)
     return response
 });
 // After the user has input all employees desired, call the `render` function (required
