@@ -1,12 +1,12 @@
-const Manager = require("./Develop/lib/Manager");
-const Engineer = require("./Develop/lib/Engineer");
-const Intern = require("./Develop/lib/Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
-const render = require("./Develop/lib/htmlRenderer");
+const render = require("./lib/htmlRenderer");
 const allEmployees = [];
 
 // Write code to use inquirer to gather information about the development team members,
@@ -86,16 +86,14 @@ function startPrompt() {
                 allEmployees.push(intern)
                 console.log("Intern selected");
             }
-            //console.log(res)
             if (res.otherEmployees === true) {
                 startPrompt()
             } else {
                 const renderEmployee = render(allEmployees);
-                fs.writeFile("team.html", renderEmployee, function (err) {
+                fs.writeFile(outputPath, renderEmployee, function (err) {
                     if (err) {
                         return console.log(err);
                     }
-                    //console.log("Employee html generated!");
                 })
             }
         });
