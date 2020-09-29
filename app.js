@@ -43,29 +43,47 @@ inquirer.prompt([
         type: "input",
         name: "officeNumber",
         message: "What is your office number?",
-        when: function (response) {
-            return response.role === 'Manager'
+        when: function (res) {
+            return res.role === 'Manager'
         }
     },
     {
         type: "input",
         name: "github",
         message: "What is your github username?",
-        when: function (response) {
-            return response.role === 'Engineer'
+        when: function (res) {
+            return res.role === 'Engineer'
         }
     },
     {
         type: "input",
         name: "school",
         message: "What is your school name?",
-        when: function (response) {
-            return response.role === 'Intern'
+        when: function (res) {
+            return res.role === 'Intern'
         }
     },
+    {
+        type: "input",
+        name: "otherEmployees",
+        message: "Are there any more employees?"
+    }
 ])
-.then (function(response){
-    console.log(response)
+.then (function(res){
+    console.log(res)
+    const manager = new Manager(res.name, res.id, res.email, res.officeNumber);
+
+    allEmployees.push(manager);
+    console.log(allEmployees);
+    const renderEmployee = render(allEmployees);
+    console.log(renderEmployee);
+
+    fs.writeFile("team.html", renderEmployee, function(err) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log("Employee html generated!");
+    })
 });
 
 
