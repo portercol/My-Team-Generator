@@ -64,9 +64,11 @@ inquirer.prompt([
         }
     },
     {
-        type: "input",
+        type: "confirm",
         name: "otherEmployees",
         message: "Are there any more employees?"
+        // if yes to more employees - how would we do that?
+
     }
 ])
 .then (function(res){
