@@ -12,83 +12,85 @@ const allEmployees = [];
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-inquirer.prompt([
-    {
-        type: "input",
-        name: "name",
-        message: "What is your name?"
-    },
-    {
-        type: "input",
-        name: "id",
-        message: "What is your ID number?"
-    },
-    {
-        type: "input",
-        name: "email",
-        message: "What is your email?"
-    },
-    {
-        type: "list",
-        name: "role",
-        message: "What is your role?",
-        choices: 
-        [
-            "Manager",
-            "Engineer",
-            "Intern"
-        ]
-    },
-    {
-        type: "input",
-        name: "officeNumber",
-        message: "What is your office number?",
-        when: function (res) {
-            return res.role === 'Manager'
+function startPrompt() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is your name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is your ID number?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is your email?"
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "What is your role?",
+            choices:
+                [
+                    "Manager",
+                    "Engineer",
+                    "Intern"
+                ]
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is your office number?",
+            when: function (res) {
+                return res.role === 'Manager'
+            }
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is your github username?",
+            when: function (res) {
+                return res.role === 'Engineer'
+            }
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is your school name?",
+            when: function (res) {
+                return res.role === 'Intern'
+            }
+        },
+        {
+            type: "confirm",
+            name: "otherEmployees",
+            message: "Are there any more employees?"
+            // if yes to more employees - how would we do that?
         }
-    },
-    {
-        type: "input",
-        name: "github",
-        message: "What is your github username?",
-        when: function (res) {
-            return res.role === 'Engineer'
-        }
-    },
-    {
-        type: "input",
-        name: "school",
-        message: "What is your school name?",
-        when: function (res) {
-            return res.role === 'Intern'
-        }
-    },
-    {
-        type: "confirm",
-        name: "otherEmployees",
-        message: "Are there any more employees?"
-        // if yes to more employees - how would we do that?
+    ])
 
-    }
-])
-.then (function(res){
-    console.log(res)
-    const manager = new Manager(res.name, res.id, res.email, res.officeNumber);
-    const engineer = new Engineer(res.name, res.id, res.email, res.github);
+        .then(function (res) {
+            console.log(res)
+            const manager = new Manager(res.name, res.id, res.email, res.officeNumber);
+            const engineer = new Engineer(res.name, res.id, res.email, res.github);
+            const intern = new Intern(res.name, res.id, res.email, res.school);
 
-    allEmployees.push(manager, engineer);
-    console.log(allEmployees);
-    const renderEmployee = render(allEmployees);
-    console.log(renderEmployee);
+            allEmployees.push(manager, engineer);
+            console.log(allEmployees);
+            const renderEmployee = render(allEmployees);
+            console.log(renderEmployee);
 
-    fs.writeFile("team.html", renderEmployee, function(err) {
-        if (err) {
-            return console.log(err);
-        }
-        console.log("Employee html generated!");
-    })
-});
-
+            fs.writeFile("team.html", renderEmployee, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+                console.log("Employee html generated!");
+            })
+        });
+};
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
