@@ -73,25 +73,34 @@ function startPrompt() {
     ])
 
         .then(function (res) {
-            console.log(res)
-            const manager = new Manager(res.name, res.id, res.email, res.officeNumber);
-            const engineer = new Engineer(res.name, res.id, res.email, res.github);
-            const intern = new Intern(res.name, res.id, res.email, res.school);
-
-            allEmployees.push(manager, engineer);
-            console.log(allEmployees);
-            const renderEmployee = render(allEmployees);
-            console.log(renderEmployee);
-
-            fs.writeFile("team.html", renderEmployee, function (err) {
-                if (err) {
-                    return console.log(err);
-                }
-                console.log("Employee html generated!");
-            })
+            if (res.role === 'Manager') {
+                const manager = new Manager(res.name, res.id, res.email, res.officeNumber)
+                allEmployees.push(manager)
+                console.log("Manager selected");
+            } else if (res.role === 'Engineer') {
+                const engineer = new Engineer(res.name, res.id, res.email, res.github)
+                allEmployees.push(engineer)
+                console.log("Engineer selected");
+            } else if (res.role === 'Intern') {
+                const intern = new Intern(res.name, res.id, res.email, res.school)
+                allEmployees.push(intern)
+                console.log("Intern selected");
+            }
+            //console.log(res)
+            if (res.otherEmployees === true) {
+                startPrompt()
+            } else {
+                const renderEmployee = render(allEmployees);
+                fs.writeFile("team.html", renderEmployee, function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    //console.log("Employee html generated!");
+                })
+            }
         });
 };
-
+startPrompt()
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
