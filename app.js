@@ -72,8 +72,9 @@ inquirer.prompt([
 .then (function(res){
     console.log(res)
     const manager = new Manager(res.name, res.id, res.email, res.officeNumber);
+    const engineer = new Engineer(res.name, res.id, res.email, res.github);
 
-    allEmployees.push(manager);
+    allEmployees.push(manager, engineer);
     console.log(allEmployees);
     const renderEmployee = render(allEmployees);
     console.log(renderEmployee);
