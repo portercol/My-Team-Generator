@@ -9,8 +9,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const allEmployees = [];
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+// write function to wrap the prompt questions and promise
 
 function startPrompt() {
     inquirer.prompt([
@@ -40,6 +39,7 @@ function startPrompt() {
                     "Intern"
                 ]
         },
+        // write inquirer method to distinquish between which role is selected 
         {
             type: "input",
             name: "officeNumber",
@@ -71,20 +71,20 @@ function startPrompt() {
             // if yes to more employees - how would we do that?
         }
     ])
+        // write promise function after initial prompt questions
 
         .then(function (res) {
             if (res.role === 'Manager') {
+                // if role is manager -- create instance of manager and add response data
                 const manager = new Manager(res.name, res.id, res.email, res.officeNumber)
+                // push new instance to the array 'allEmployees'
                 allEmployees.push(manager)
-                console.log("Manager selected");
             } else if (res.role === 'Engineer') {
                 const engineer = new Engineer(res.name, res.id, res.email, res.github)
                 allEmployees.push(engineer)
-                console.log("Engineer selected");
             } else if (res.role === 'Intern') {
                 const intern = new Intern(res.name, res.id, res.email, res.school)
                 allEmployees.push(intern)
-                console.log("Intern selected");
             }
             if (res.otherEmployees === true) {
                 startPrompt()
@@ -92,7 +92,7 @@ function startPrompt() {
                 const renderEmployee = render(allEmployees);
                 fs.writeFile(outputPath, renderEmployee, function (err) {
                     if (err) {
-                        return console.log(err);
+                        return (err);
                     }
                 })
             }
