@@ -80,10 +80,14 @@ function startPrompt() {
                 // push new instance to the array 'allEmployees'
                 allEmployees.push(manager)
             } else if (res.role === 'Engineer') {
+                // if role is engineer -- create instance of engineer and add response data
                 const engineer = new Engineer(res.name, res.id, res.email, res.github)
+                // push new instance to array 'allEmployees'
                 allEmployees.push(engineer)
             } else if (res.role === 'Intern') {
+                // if role is intern -- create instance of intern and add response data
                 const intern = new Intern(res.name, res.id, res.email, res.school)
+                // push new instance to array 'allEmployees'
                 allEmployees.push(intern)
             }
             if (res.otherEmployees === true) {
