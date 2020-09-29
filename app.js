@@ -40,11 +40,36 @@ inquirer.prompt([
             "Engineer",
             "Intern"
         ]
-    }
+    },
+    {
+        type: "input",
+        name: "officeNumber",
+        message: "What is your office number?",
+        when: function (response) {
+            return response.role === 'Manager'
+        }
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "What is your github username?",
+        when: function (response) {
+            return response.role === 'Engineer'
+        }
+    },
+    {
+        type: "input",
+        name: "school",
+        message: "What is your school name?",
+        when: function (response) {
+            return response.role === 'Intern'
+        }
+    },
 ])
 .then (function(response){
+    console.log(response)
     // var userData = render(response)
-    return response
+    // return response
 });
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
