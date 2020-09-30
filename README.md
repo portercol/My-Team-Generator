@@ -12,4 +12,7 @@ This command line application builds a software engineering team generator. Usin
     4. Prompt user to answer questions that will generate a team
     5. Write to a new html file that will display a generated team of engineers and interns
 
-## Credits
+## Credits/Technologies
+    1. JavaScript
+    2. Node.js
+    3. Inquirer Package
