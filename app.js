@@ -72,7 +72,6 @@ function startPrompt() {
         }
     ])
         // write promise function after initial prompt questions
-
         .then(function (res) {
             if (res.role === 'Manager') {
                 // if role is manager -- create instance of manager and add response data
@@ -91,9 +90,12 @@ function startPrompt() {
                 allEmployees.push(intern)
             }
             if (res.otherEmployees === true) {
+                // if yes to other employees - run prompt questions again
                 startPrompt()
             } else {
+                // if no to other employees - push array 'allEmployees' through the render function to render html
                 const renderEmployee = render(allEmployees);
+                // write to file using 'fs' and also pushing through outputPath and renderEmployee vars
                 fs.writeFile(outputPath, renderEmployee, function (err) {
                     if (err) {
                         return (err);
@@ -102,4 +104,5 @@ function startPrompt() {
             }
         });
 };
+// calling the function to start the prompt questions
 startPrompt();
