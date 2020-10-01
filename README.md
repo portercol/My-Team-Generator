@@ -14,7 +14,12 @@ This command line application builds a software engineering team generator. Usin
     4. Prompt user to answer questions about their team
     5. Write to a new html file that will display a generated team of engineers and interns
 
-
+### Pass all tests
+![My Team Generator](images/npm-test-run.png)
+### Run app in command line
+![My Team Generator](images/node-app-run.png)
+### Generated Team HTML Page
+![My Team Generator](images/generated-team-html.png)
 
 ## Credits/Technologies
     1. JavaScript
