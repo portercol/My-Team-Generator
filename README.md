@@ -23,6 +23,7 @@ This command line application builds a software engineering team generator. Usin
 
 ## Credits/Technologies
     1. JavaScript
-    2. Node.js
-    3. Inquirer Package
-    4. Jest Package
+    2. HTML
+    3. Node.js
+    4. Inquirer Package
+    5. Jest Package
