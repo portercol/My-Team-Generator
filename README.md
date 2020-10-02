@@ -19,7 +19,7 @@ This command line application builds a software engineering team generator. Usin
 ### Run app in command line
 ![My Team Generator](images/node-app-run.png)
 ### Generated Team HTML Page
-![My Team Generator](images/generated-team-html.png)
+![My Team Generator](images/generated-team.png)
 
 ## Credits/Technologies
     1. JavaScript
